@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Proiect</title>
+
+    <link rel="stylesheet" type="text/css" th:href="@{/bootstrap/css/bootstrap.css}" >
+
+</head>
+<body>
+<!--Navbar-->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/index">Home</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" href="carti">Carti</a>
+                    <!-- <a class="nav-link" href="carti.html">Login</a>-->
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="biblioteci">Biblioteci</a>
+                </li>
+                >
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--Navbar-->
+
+<form th:action="@{/submitCarti}" th:object="${carti}" method="post">
+
+
+    <div class = "form-group row">
+        <label>Nume:</label>
+        <input th:field ="${carti.Nume}" type="text">
+    </div>
+
+    <div class = "form-group row">
+        <label>An:</label>
+        <input th:field ="${carti.An}" type="text">
+    </div>
+
+    <div class = "form-group row">
+        <label>Scriitor:</label>
+        <input th:field ="${carti.Scriitor}" type="text">
+    </div>
+
+    <div class = "form-group row">
+        <label>Pret:</label>
+        <input th:field ="${carti.Pret}" type="text">
+    </div>
+
+    <div class = "form-group row">
+        <button type="submit" class="btn btn=primary">Submit</button>
+    </div>
+
+
+</form>
+
+
+
+<!--
+<div th:each="employee : ${Lista}">
+    <span th:text="${employee.lastName}"></span>
+    <span th:text="${employee.firstName}"></span>
+    <span th:text="${employee.salary}"></span>
+</div>
+
+<br/>
+
+<div>
+
+    <table>
+        <thead>
+        <tr>
+            <td>Lastname</td>
+            <td>Firstname</td>
+            <td>Salary</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="employee : ${Lista}">
+            <td th:text="${employee.lastName}"></td>
+            <td th:text="${employee.firstName}"></td>
+            <td th:text="${employee.salary}"></td>
+        </tr>
+        <tr>
+            <td>Ciorba</td>
+            <td>Sandu2</td>
+            <td>600000</td>
+        </tr>
+        </tbody>
+
+    </table>
+-->
+</div>
+
+</body>
+
+<script th:src="@{/bootstrap/js/bootstrap.js}"></script>
+
+
+
+</html>
