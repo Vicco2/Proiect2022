@@ -1,7 +1,8 @@
 package com.example.controller;
 
-import com.example.model.Biblioteci;
-import com.example.model.Carti;
+import com.example.dto.BookDto;
+import com.example.entity.Library;
+import com.example.entity.Book;
 import com.example.service.AllService;
 //import com.example.service.BiblioteciService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 
 @Controller
@@ -28,27 +32,18 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping(value="/carti")
-    public String getCarti(Model model) {
+    @GetMapping(value="/book")
+    public String getBook(Model model) {
 
-
-
-       /* List<Carti> cartiList = List.of(
-                new Carti("Don Quixote de La Mancha", 1620, "Miguel de Cervantes", 269 ),
-                new Carti("The Call of Cthulhu", 1926, "H. P. Lovecraft", 160 ),
-                new Carti("At the Mountains of Madness", 1931 , "H. P. Lovecraft", 225 ),
-                new Carti("The Good Soldier Schweik", 1921 , "Jaroslav Hašek", 276 ),
-                new Carti("Great Teacher Onizuka Vol 22", 1997  , "Tooru Fujisawa", 120 )
-
-        );*/
-        model.addAttribute("cartiList", service.getCartiList());
+        List<BookDto> bookDtoList = service.getBookList();
+        model.addAttribute("bookList", service.getBookDtoList);
        // model.addAttribute("ListaCarti", cartiList);
 
-        return "carti";
+        return "book";
     }
 
-    @GetMapping(value="/biblioteci")
-    public String getBiblioteci(Model model) {
+    @GetMapping(value="/library")
+    public String getLibrary(Model model) {
 
         /*List<Biblioteci> biblioteciList = List.of(
                 new Biblioteci("Biblioteca Liceului de Arte Regina Maria ","Alba Iulia" ),
@@ -58,51 +53,60 @@ public class IndexController {
 
         );*/
 
-        model.addAttribute("ListaBiblioteci",service.getBiblioteciList());
-        model.addAttribute("cartiList", service.getCartiList());
+        model.addAttribute("libraryList",service.getLibraryList());
+        model.addAttribute("bookList", service.getBookList());
 
 
-        return "biblioteci";
+        return "library";
 
     }
 
-    @GetMapping(value="/createBiblioteci")
-    public String createBiblioteci(Model model){
-        Biblioteci biblioteci = new Biblioteci();
-        model.addAttribute("biblioteci",biblioteci);
-        return "formPageBiblioteci";
+    @GetMapping(value="/createLibrary")
+    public String createLibrary(Model model){
+        Library library = new Library();
+        model.addAttribute("library", library);
+        return "formPageLibrary";
     }
 
-    @GetMapping(value="/createCarti")
-    public String createCarti(Model model){
-        Carti carti = new Carti();
-    model.addAttribute("carti",carti);
+    @GetMapping(value="/createBook")
+    public String createBook(Model model){
+        BookDto bookDto = new BookDto();
+        model.addAttribute("book", bookDto);
         return "formPage";
     }
 
-    @PostMapping(value="/submitCarti")
-    public String submitCarti(@ModelAttribute Carti carti){
-        System.out.println(carti.getNume());
-        System.out.println(carti.getAn());
-        System.out.println(carti.getScriitor());
-        System.out.println(carti.getPret());
-        service.saveCarti(carti);
+    @PostMapping(value="/submitBook")
+    public String submitBook(@ModelAttribute BookDto bookDto){
+
+        service.saveBook(bookDto);
 
       //  repository.save(carti);
-        return "redirect:/index";
+        return "redirect:/book";
 
 
     }
-    @PostMapping(value="/submitBiblioteci")
-    public String submitBiblioteci(@ModelAttribute Biblioteci biblioteci){
-        System.out.println(biblioteci.getNumeBiblioteca());
-        System.out.println(biblioteci.getLoc());
-        service.saveBiblioteci(biblioteci);
+    @PostMapping(value="/submitLibrary")
+    public String submitLibrary(@ModelAttribute Library library){
+        System.out.println(library.getNameLibrary());
+        System.out.println(library.getLocation());
+        service.saveLibrary(library);
 
         //  repository.save(carti);
         return "redirect:/index";
 
 
+    }
+
+    @PostMapping  (value="/deleteBook")
+    public String deleteBook(@RequestParam("bookId")int id){
+        service.deleteBook(id);
+        return "redirect:/book";
+    }
+    @PostMapping  (value="/editBook")
+    public String editBook(@RequestParam("bookId")int id, Model model){
+        BookDto bookDto = service.findBookById(id);
+        model.addAttribute("book", bookDto);
+        return "formPage";
     }
 }
 

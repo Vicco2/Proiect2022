@@ -18,12 +18,10 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="carti">Carti</a>
-                    <!-- <a class="nav-link" href="carti.html">Login</a>-->
+                    <a class="nav-link active" href="createLibrary">Adauga</a>
+                    <!-- <a class="nav-link" href="book.html">Login</a>-->
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="biblioteci">Biblioteci</a>
-                </li>
+
                 >
                 </li>
             </ul>
@@ -32,17 +30,17 @@
 </nav>
 <!--Navbar-->
 
-<form th:action="@{/submitBiblioteci}" th:object="${biblioteci}" method="post">
+<form th:action="@{/submitLibrary}" th:object="${library}" method="post" style="width:650px; border: 1px solid black">
 
 
     <div class = "form-group row">
         <label>Nume Biblioteca:</label>
-        <input th:field ="${biblioteci.NumeBiblioteca}" type="text">
+        <input th:field ="${library.NameLibrary}" type="text">
     </div>
 
     <div class = "form-group row">
         <label>Locatie:</label>
-        <input th:field ="${biblioteci.Loc}" type="text">
+        <input th:field ="${library.Location}" type="text">
     </div>
 
     <div class = "form-group row">

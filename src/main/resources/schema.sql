@@ -1,19 +1,19 @@
-create table t_carte
+create table t_book
 (
     id integer auto_increment,
-    Nume varchar(50),
-    An integer,
-    Scriitor varchar(50),
-    Pret integer,
+    name varchar(50),
+    year integer,
+    writer varchar(50),
+    price integer,
     primary key(id)
 );
 
-create table t_biblioteci
+create table t_library
 (
     id integer auto_increment,
-    NumeBiblioteci varchar(50),
+    library_name varchar(50),
 
-    Locatie varchar(50),
+    location varchar(50),
 
     primary key(id)
 );

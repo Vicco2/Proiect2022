@@ -18,11 +18,11 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" href="carti">Carti</a>
-                    <!-- <a class="nav-link" href="carti.html">Login</a>-->
+                    <a class="nav-link active" href="book">Carti</a>
+                    <!-- <a class="nav-link" href="book.html">Login</a>-->
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="biblioteci">Biblioteci</a>
+                    <a class="nav-link active" aria-current="page" href="library">Biblioteci</a>
                 </li>
                 >
                 </li>
@@ -32,27 +32,30 @@
 </nav>
 <!--Navbar-->
 
-<form th:action="@{/submitCarti}" th:object="${carti}" method="post">
-
+<form th:action="@{/submitBook}" th:object="${book}" method="post">
+    <div class = "form-group row">
+        <label>Id:</label>
+        <input th:field ="${book.id}" type="text">
+    </div>
 
     <div class = "form-group row">
         <label>Nume:</label>
-        <input th:field ="${carti.Nume}" type="text">
+        <input th:field ="${book.Name}" type="text">
     </div>
 
     <div class = "form-group row">
         <label>An:</label>
-        <input th:field ="${carti.An}" type="text">
+        <input th:field ="${book.Year}" type="text">
     </div>
 
     <div class = "form-group row">
         <label>Scriitor:</label>
-        <input th:field ="${carti.Scriitor}" type="text">
+        <input th:field ="${book.Writer}" type="text">
     </div>
 
     <div class = "form-group row">
         <label>Pret:</label>
-        <input th:field ="${carti.Pret}" type="text">
+        <input th:field ="${book.Price}" type="text">
     </div>
 
     <div class = "form-group row">

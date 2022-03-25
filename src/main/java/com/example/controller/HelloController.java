@@ -1,7 +1,7 @@
 package com.example.controller;
 
 
-import com.example.model.Employee;
+import com.example.entity.Employee;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
